@@ -58,3 +58,123 @@ XEP is **open source** and comes as a **ready-to-go(现成的) Atmel Studio 7 pr
 - **FreeRTOS** for real time system behaviour monitoring and management.
 
 <img src="img/7.PNG" style="zoom:80%;" />
+
+## 2. INTRODUCTION TO RADAR SIGNAL PROCESSING
+
+> Reference: INTRODUCTION TO RADAR SIGNAL PROCESSING, Christos llioudis
+
+### 2.1 Basic principles
+
+- Radar is an acronym for **RA**dio **D**etection **A**nd **R**anging. 
+- Radar is an object detection system that transmits electromagnetic(EM) waves and analyses the echoes coming from the objects.
+
+### 2.2 Radar Categorisation(分类)
+
+> 可以从以下四个角度分类
+
+- #### Operation
+
+  - Primary: Target monitoring
+
+  - Secondary: Transponder on the target **(Fig following)**
+
+    <img src="img/8.PNG" style="zoom:80%;" />
+
+- #### Illuminator
+
+  - Active: Uses its transmitter to illuminate the target
+
+  - Passive: Exploit illuminators of opportunity **(Fig following)**
+
+    <img src="img/9.PNG" style="zoom:80%;" />
+
+- #### Transmission rate
+
+  - Pulsed: Emit separated pulses
+
+  - Continuous Wave (CW): Constant transmission**(Fig following)**
+
+    <img src="img/10.PNG" style="zoom:80%;" />
+
+- #### Geometry
+
+  - Monostatic(单站): Transmitter and receiver in the same location **(Fig. Left)**
+
+  - Bistatic(双站): Transmitter and receiver in separate locations **(Fig. Right)**
+
+    <img src="img/11.PNG" style="zoom:80%;" />
+
+### 2.3 Operating Principles
+
+### 2.4 Principles of Measurements
+
+#### 2.4.1 Radar Equation
+
+The radar equation is referring to the power of the echo returning to the radar:
+$$
+P_{r}=\frac{P_{t} G^{2} \lambda^{2} \sigma}{(4 \pi)^{3} R^{4} L} \rightarrow R=\sqrt[4]{\frac{P_{t} G^{2} \lambda^{2} \sigma}{(4 \pi)^{3} L P_{r}}}
+$$
+$P_{t}$ : Transmit power
+
+$G$ : Antenna gain
+
+$\lambda$ : Radar operating wavelength
+
+$\sigma$ : Target radar cross section (RCS)
+
+$R$ : Range from the radar to the target
+
+$L$: Other losses (system, propagation)
+
+> 雷达截面积(Radar Cross Section, RCS)是目标在雷达接收方向上反射雷达信号能力的度量，一个目标的RCS等于单位立体角目标在雷达接收天线方向上反射的功率(每单独立体角)与入射到目标处的功率密度(每平方米)之比。
+
+Low frequencies are preferable for long-range radar. Low RCS targets are harder to detect.
+
+<img src="img/13.PNG" style="zoom: 80%;" />
+
+#### 2.4.2 Distance Determination
+
+
+
+#### 2.4.3 Range Resolution
+
+#### 2.4.4 Direction Determination
+
+#### 2.4.5 Pulse Repetition Interval
+
+Pulse Repetition Interval (PRI) is defined as the time interval between consequent(后续) pulses.
+
+#### 2.4.6 Maximum Unambiguous Ranges
+
+The maximum unambiguous range defines the maximum distance to locate a target.
+$$
+R_{\max }=\frac{c \mathrm{PRI}}{2}=\frac{c}{2 \mathrm{PRF}}
+$$
+Radar is not able to discriminate between echoes from an older and the current transmission.
+
+#### 2.4.7 Data Matrix and Data Cube
+
+
+
+### 2.5 Coherent and Doppler processing
+
+#### 2.5.1 Spectrum of Continuous Wave Signal
+
+Consider a continuous wave (CW) radar with operating frequency $f_0$. In the presence of a target moving with radial velocity $u_r$, due to the **Doppler phenomenon**, the echoed signal will be shifted in frequency by:
+$$
+f_{D}=\frac{u_{r}}{c} f_{0}
+$$
+Positive Doppler shifts ($f_D > 0$) indicate that the target is moving **towards** the radar, while negative ($f_D < 0$) **away** from it.
+
+<img src="img/12.PNG" style="zoom: 67%;" />
+
+#### 2.5.2 Spectrum of Pulsed Signal
+
+In most radar systems, the bandwidth of single pulse may be a few **orders of magnitude**(数量级) greater than the expected Doppler frequency shift:
+$$
+\frac{1}{T} \gg f_{D}
+$$
+Echoes from moving targets cannot be discriminated(鉴别) from stationary clatter in spectrum. Using consequent pulsed over a coherent pulse interval (CPI), the single pulse bandwidth is divided into spectral line of approximate bandwidth $1/{CPI}$
+
+#### 2.5.3 Range-Doppler Maps
+
