@@ -138,6 +138,8 @@ Low frequencies are preferable for long-range radar. Low RCS targets are harder 
 
 #### 2.4.3 Range Resolution
 
+> 脉冲宽度和带宽成反比关系，脉冲信号的脉冲宽度约窄，信号带宽越宽。因为信号脉宽是指脉冲信号的脉冲宽度（时间）；信号带宽是指信号频谱的宽度，也就是信号的最高频率分量与最低频率分量之差，是指一个信号所包含的所有频率成分（频率）
+
 #### 2.4.4 Direction Determination
 
 #### 2.4.5 Pulse Repetition Interval
@@ -154,7 +156,10 @@ Radar is not able to discriminate between echoes from an older and the current t
 
 #### 2.4.7 Data Matrix and Data Cube
 
+Radar returns from each PRI are stored in memory for further processing. 
 
+- **Fast Time** refers to the different time slots(时间段) composing a PRI, sampling rate dependent.
+- **Slow Time** updates every PRI
 
 ### 2.5 Coherent and Doppler processing
 
@@ -178,3 +183,25 @@ Echoes from moving targets cannot be discriminated(鉴别) from stationary clatt
 
 #### 2.5.3 Range-Doppler Maps
 
+> #### Concept of Coherence: 
+>
+> In a pulse radar system, **coherence** describes the phase relationships between the transmitted and the received pulses. Oscillations and electromagnetic waves are described as coherent if their phase relationships are constant(相位差为常数). In case of incoherence, these phase shifts are statistically distributed. Whether radar is coherent or not is determined by the type of transmitter. As transmitters different systems can work in the radar, which are either coherent, partially coherent or incoherent.
+
+## 3. UWB Basic Principles
+
+The XeThru X4 is a compact, **Impulse-Radio Ultra-Wideband** (IR-UWB) radar system on a chip. It is configurable and gives the developer a high degree of freedom to develop new applications
+from basic presence detection to advanced imaging-solutions.
+
+### 3.1 The basics of X4 Impulse Radar
+
+XeThru X4 is a complete IR-UWB radar system on chip. To configure it correctly, it's important to have a good understanding of how an impulse radar system works and how the received data is sampled and presented. The fundamentals of an impulse radar system are shown in Fig. 1. The radar sends out an electromagnetic impulse through the Tx antenna which is reflected from any object in front of it. The reflections travel back and are received and sampled through the Rx antenna.
+
+<img src="img/14.PNG" style="zoom:80%;" />
+
+The pulse that X4 transmits is configurable within two different bands. The lower pulse generator setting enables transmission within the band 6-8.5 GHz, shown in Fig. 2, and the high settings within the band 7.25-10.2 GHz.
+
+## 4. Pulse-Doppler signal processing
+
+### 4.1 Environment
+
+Pulse-Doppler begins with coherent pulses transmitted through an antenna or transducer. There is no modulation on the transmit pulse. Each pulse is a perfectly clean slice of a perfect coherent tone. The coherent tone is produced by the local oscillator. There can be dozens of transmit pulses between the antenna and the reflector. In a hostile environment, there can be millions of other reflections from slow moving or stationary objects. Transmit pulses are sent at the pulse repetition frequency. 
