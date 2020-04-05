@@ -1,3 +1,9 @@
+# -*- coding:utf-8 -*-
+
+'''
+获得雷达数据帧（baseband）,包括幅度和相位信号
+'''
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
@@ -23,14 +29,16 @@ def clear_buffer(mc):
         xep.read_message_data_float()
 
 def display_sys_info(xep):
-    print("FirmWareID =", xep.get_system_info(2), "\n")
-    print("Version =", xep.get_system_info(3), "\n")
-    print("Build =", xep.get_system_info(4), "\n")
-    # print("SerialNumber =", xep.get_system_info(6), "\n")
-    print("VersionList =", xep.get_system_info(7), "\n")
+    print("FirmWareID =", xep.get_system_info(2))
+    print("Version =", xep.get_system_info(3))
+    print("Build =", xep.get_system_info(4))
+    # print("SerialNumber =", xep.get_system_info(6))
+    print("VersionList =", xep.get_system_info(7))
 
 def read_apdata(xep):
     #read a frame
+    # data = xep.read_message_radar_baseband_float().get_I()
+    print("im here")
     data = xep.read_message_data_float().data
     data_length = len(data)
 
@@ -42,6 +50,12 @@ def read_apdata(xep):
     ph_phase = np.arctan2(q_vec, i_vec)          #相位
 
     return ph_ampli, ph_phase
+
+# 找到波形的峰值
+def find_peak(frame):
+    doublediff = np.diff(np.sign(np.diff(frame)))
+    peak_locations = np.where(doublediff == -2)[0] + 1
+    return peak_locations
 
 if __name__ == "__main__":
 
@@ -83,7 +97,7 @@ if __name__ == "__main__":
     ax2 = fig.add_subplot(2,1,2)
 
 
-    ax1.set_ylim(0,0.01) #keep graph in frame (FIT TO YOUR DATA)
+    ax1.set_ylim(0,0.02) #keep graph in frame (FIT TO YOUR DATA)
     # ax2.set_xlim(0,100)
     
     line1, = ax1.plot(ax_x,amplitude)
