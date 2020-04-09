@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from time import sleep
 import datetime
+import os
 
 import pymoduleconnector
 from pymoduleconnector import DataType
@@ -29,7 +30,7 @@ class Xep_data(object):
         self.area_end = area_end
         self.bin_length = 8*1.5e8/23.328e9
         self.fast_sample_point = int((self.area_end - self.area_start)/self.bin_length + 2)
-        #类型转换只取整
+        #类型转换只取整  
 
         self.reset()
 
@@ -102,12 +103,17 @@ class Xep_data(object):
                 n += 1
 
         if save:
-            filename1 = './data/amp_matrix' + str(new_time.minute) + \
-                str(new_time.second) + 'sample_time%ds.txt' % sample_time
-            filename2 = './data/pha_matrix' + str(new_time.minute) + \
-                str(new_time.second) + 'sample_time%ds.txt' % sample_time
-            np.savetxt(filename1, amp_matrix)
-            np.savetxt(filename2, pha_matrix)
+            path = './data/datamatrix_' + str(new_time.minute) + \
+                str(new_time.second) + '_sampletime%ds' % sample_time
+            folder = os.path.exists(path)
+            if not folder:
+                os.mkdir(path)
+                filename1 = path + '/amp_matrix.txt'
+                filename2 = path + '/pha_matrix.txt'
+                np.savetxt(filename1, amp_matrix)
+                np.savetxt(filename2, pha_matrix)
+            else:
+                print('error:the folder exists!!!')
 
         return amp_matrix, pha_matrix
         
