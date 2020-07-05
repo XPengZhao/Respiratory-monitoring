@@ -91,6 +91,7 @@ class Xep_data(object):
         pha_matrix = np.empty([row, col])
 
         old_time = datetime.datetime.now()
+        print(old_time)
         n = 0
         while n < row:
             new_time = datetime.datetime.now()
